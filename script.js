@@ -10,11 +10,12 @@ document.addEventListener('DOMContentLoaded', () => {
     yearEl.textContent = new Date().getFullYear();
   }
 
-  // 2. Mobile Drawer Navigation
+  // 2. Mobile Drawer Navigation & Touch Gestures
   const drawerTrigger = document.getElementById('drawerTrigger');
   const drawerDismissBtn = document.getElementById('drawerDismissBtn');
   const drawerBackdrop = document.getElementById('drawerDismissBackdrop');
   const mobileDrawer = document.getElementById('mobileDrawer');
+  const drawerPanel = mobileDrawer ? mobileDrawer.querySelector('.drawer-panel') : null;
   const drawerLinks = document.querySelectorAll('.drawer-link');
 
   function openDrawer() {
@@ -22,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     mobileDrawer.classList.add('open');
     mobileDrawer.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
   }
 
   function closeDrawer() {
@@ -29,6 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     mobileDrawer.classList.remove('open');
     mobileDrawer.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
   }
 
   if (drawerTrigger) drawerTrigger.addEventListener('click', openDrawer);
@@ -39,11 +42,41 @@ document.addEventListener('DOMContentLoaded', () => {
     link.addEventListener('click', closeDrawer);
   });
 
+  // Touch Swipe-to-Close gesture for mobile drawer
+  if (drawerPanel) {
+    let startX = 0;
+    let currentX = 0;
+
+    drawerPanel.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+      currentX = startX;
+    }, { passive: true });
+
+    drawerPanel.addEventListener('touchmove', (e) => {
+      currentX = e.touches[0].clientX;
+    }, { passive: true });
+
+    drawerPanel.addEventListener('touchend', () => {
+      // Swiping to the right (towards screen edge) closes drawer
+      if (currentX - startX > 60) {
+        closeDrawer();
+      }
+    });
+  }
+
   // 3. Real-Time IST Store Status Calculator (Gogamukh, Assam)
   updateISTStoreStatus();
   // Check every minute
   setInterval(updateISTStoreStatus, 60000);
 });
+
+// Enable interactive map after user taps map overlay
+function enableMapInteraction() {
+  const scrim = document.getElementById('mapTouchScrim');
+  if (scrim) {
+    scrim.classList.add('scrim-disabled');
+  }
+}
 
 // Full Screen Lightbox Modal
 function openPhotoModal(imgSrc, captionText) {
@@ -58,6 +91,7 @@ function openPhotoModal(imgSrc, captionText) {
   modal.classList.add('active');
   modal.setAttribute('aria-hidden', 'false');
   document.body.style.overflow = 'hidden';
+  document.documentElement.style.overflow = 'hidden';
 }
 
 function closePhotoModal() {
@@ -66,6 +100,7 @@ function closePhotoModal() {
   modal.classList.remove('active');
   modal.setAttribute('aria-hidden', 'true');
   document.body.style.overflow = '';
+  document.documentElement.style.overflow = '';
 }
 
 document.addEventListener('keydown', (e) => {
