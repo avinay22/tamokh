@@ -1,5 +1,5 @@
 // ==========================================================================
-// TAMOKH — Contemporary Men's Fashion House (Gogamukh, Assam)
+// TAMOKH — Contemporary Fashion for Everyone (Gogamukh, Assam)
 // Interactive Script: Real-Time Store Status, Navigation & Lightbox
 // ==========================================================================
 
