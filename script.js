@@ -154,7 +154,7 @@ function updateISTStoreStatus() {
     // Saturday: check / call before visiting
     headlineEl.textContent = "Saturday Store Hours";
     headlineEl.style.color = "#ba482e";
-    subEl.textContent = "Please WhatsApp or call +91 81955 35500 before visiting today";
+    subEl.textContent = "Please WhatsApp or call +91 91819 55355 before visiting today";
     if (dot) {
       dot.style.background = "#ba482e";
     }
