@@ -80,8 +80,8 @@ function copyStoreAddress(btn) {
   navigator.clipboard.writeText(address).then(() => {
     const originalHtml = btn.innerHTML;
     btn.innerHTML = `
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-      <span style="color:#25D366; font-weight: 600;">Address Copied!</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ba482e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      <span style="color:#ba482e; font-weight: 700;">Address Copied!</span>
     `;
     setTimeout(() => {
       btn.innerHTML = originalHtml;
@@ -118,27 +118,24 @@ function updateISTStoreStatus() {
   if (day === 6) {
     // Saturday: check / call before visiting
     headlineEl.textContent = "Saturday Store Hours";
-    headlineEl.style.color = "#d4af37";
+    headlineEl.style.color = "#ba482e";
     subEl.textContent = "Please WhatsApp or call +91 81955 35500 before visiting today";
     if (dot) {
-      dot.style.background = "#d4af37";
-      dot.style.boxShadow = "0 0 8px #d4af37";
+      dot.style.background = "#ba482e";
     }
   } else if (isOpen) {
     headlineEl.textContent = "Store Open Now";
-    headlineEl.style.color = "#25D366";
+    headlineEl.style.color = "#ba482e";
     subEl.textContent = "Saikia Market, Gogamukh • Closing at 9:00 PM IST";
     if (dot) {
-      dot.style.background = "#25D366";
-      dot.style.boxShadow = "0 0 10px #25D366";
+      dot.style.background = "#ba482e";
     }
   } else {
     headlineEl.textContent = "Store Closed for the Night";
-    headlineEl.style.color = "#e5e0d3";
+    headlineEl.style.color = "#6e655c";
     subEl.textContent = "Opens tomorrow at 8:30 AM • WhatsApp enquiries always welcome";
     if (dot) {
-      dot.style.background = "#a39d94";
-      dot.style.boxShadow = "none";
+      dot.style.background = "#998f84";
     }
   }
 }
